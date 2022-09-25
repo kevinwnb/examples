@@ -26,7 +26,6 @@ const getProduct = (req, res) => {
 const insertProduct = (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        console.log(util.inspect(files))
         var oldpath = files.product_image.filepath;
         var newpath = "./public/images/" + uuidv4() + path.extname(files.product_image.originalFilename);
         fs.rename(oldpath, newpath, function (err) {

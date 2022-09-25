@@ -1,11 +1,21 @@
 import { useState, useEffect } from "react"
+import uuidv4 from "uuid"
 
 function Products() {
     const [products, setProducts] = useState([])
     const [productName, setProductName] = useState("")
     const [productImage, setProductImage] = useState([])
+    const [reload, setReload] = useState(0)
 
     useEffect(() => {
+        getProducts()
+    }, [])
+
+    useEffect(() => {
+        getProducts()
+    }, [reload])
+
+    const getProducts = () => {
         fetch("/api/product", {
             method: "GET",
             headers: {
@@ -14,29 +24,23 @@ function Products() {
         })
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [])
-
-    useEffect(() => {
-        console.log(productImage)
-    }, [productImage])
+    }
 
     const sendProduct = (e) => {
         e.preventDefault()
         let formData = new FormData()
         formData.append("name", productName)
-        formData.append("product_image", productImage )
-        console.log(formData)
-        
+        formData.append("product_image", productImage[0])
+
         fetch("/api/product", {
             method: "POST",
-            headers: {
-                "content-type": "multipart/form-data"
-            },
             body: formData
 
         })
-            .then(res => res.status())
-            .then(status => console.log(status))
+            .then(res => res.status)
+            .then(status => {
+                return setReload(reload => reload + 1)
+            })
     }
 
     return (
