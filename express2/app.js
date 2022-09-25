@@ -4,9 +4,28 @@ const productRouter = require("./routes/product")
 const userRouter = require("./routes/user")
 const app = express()
 
-app.use(express.static("./public"))
-app.use(express.urlencoded({ extended: false }))
-app.use(authenticate)
+const unless = (paths, middleware, method = null) => {
+    return function (req, res, next) {
+        if (paths.includes(req.path)) {
+            if (method != null) {
+                if (req.method == method)
+                    return next()
+                else
+                    return middleware(req, res, next)
+            }
+            return next()
+        }
+        else
+            return middleware(req, res, next)
+    }
+}
+
+app.use("/", express.static("./public"))
+app.use("/products", express.static("./public"))
+app.use("/downloads", express.static("./public"))
+
+app.use(unless("/api/product", express.json(), "POST"))
+app.use(unless("/api/product", authenticate, "GET"))
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
 
