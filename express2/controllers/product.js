@@ -59,9 +59,9 @@ const updateProduct = (req, res) => {
 }
 
 const deleteProduct = (req, res) => {
-    products.filter(p => p.id != req.body.id)
-    console.log(util.inspect(products))
-    return res.status(200).json(products)
+    Product.deleteOne({_id:req.body.id}, () =>{
+        return res.status(200).send("Product deleted!")
+    })
 }
 
 module.exports = { getProducts, getProduct, insertProduct, updateProduct, deleteProduct }

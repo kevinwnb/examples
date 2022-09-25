@@ -1,6 +1,11 @@
-.products div {
-    padding: 20px;
+.products div div {
+    padding: 10px;
     background-color: #C0C0C0;
+    position: relative;
+}
+
+.products div div a {
+    right: 10px;
 }
 
 .product-form {

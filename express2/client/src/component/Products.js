@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import uuidv4 from "uuid"
+import "font-awesome/css/font-awesome.min.css"
 
 function Products() {
     const [products, setProducts] = useState([])
@@ -43,8 +44,26 @@ function Products() {
             })
     }
 
+    const deleteProduct = id => {
+        if (window.confirm("Do you know what you are doing?"))
+            fetch("/api/product", {
+                method: "DELETE",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: id,
+                    user: "Kevin"
+                })
+            })
+                .then(res => res.status)
+                .then(status => {
+                    return setReload(reload => reload + 1)
+                })
+    }
+
     return (
-        <div>
+        <div className="container">
             <form className="product-form" onSubmit={(e) => { sendProduct(e) }}>
                 <div className="mb-3">
                     <label for="exampleFormControlInput1" className="form-label">Product Name</label>
@@ -62,8 +81,11 @@ function Products() {
                 {products.map(p => {
                     return (
                         <div className="col-md-3">
-                            <img className="w-100" src={p.img_path} />
-                            <h3>{p.name}</h3>
+                            <div className="m-2">
+                                <a id={p._id} onClick={() => deleteProduct(p._id)} className="btn btn-danger position-absolute"><i className="fa fa-close"></i></a>
+                                <img className="w-100" src={p.img_path} />
+                                <h3>{p.name}</h3>
+                            </div>
                         </div>
                     )
                 })}

@@ -13,7 +13,9 @@ const unless = (paths, middleware, method = null) => {
                 else
                     return middleware(req, res, next)
             }
-            return next()
+            else {
+                return next()
+            }
         }
         else
             return middleware(req, res, next)
