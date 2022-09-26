@@ -9,16 +9,33 @@ import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap"
 import Register from './component/Register';
 import Login from './component/Login';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  const [token, setToken] = useState(localStorage.getItem("token") || "")
+
+  useEffect(() => {
+    if (token)
+      localStorage.setItem("token", token)
+    else
+      localStorage.removeItem("token")
+
+    console.log(localStorage.getItem("token"))
+  }, [token])
+
+  const logout = () => {
+    setToken("")
+  }
+
   return (
     <div className="App">
-      <Navigation />
+      <Navigation logout={logout} token={[token, setToken]} />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/downloads' element={<Downloads />}></Route>
         <Route path='/products' element={<Products />}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/login' element={<Login token={[token, setToken]} />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>
     </div>
