@@ -14,6 +14,8 @@ import { useState, useEffect } from 'react';
 function App() {
 
   const [token, setToken] = useState(localStorage.getItem("token") || "")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   useEffect(() => {
     if (token)
@@ -30,12 +32,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation logout={logout} token={[token, setToken]} />
+      <Navigation logout={logout} token={token} />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/downloads' element={<Downloads />}></Route>
         <Route path='/products' element={<Products />}></Route>
-        <Route path='/login' element={<Login token={[token, setToken]} />}></Route>
+        <Route path='/login' element={<Login token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>
     </div>

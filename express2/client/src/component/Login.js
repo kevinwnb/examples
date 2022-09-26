@@ -18,7 +18,7 @@ const Login = (props) => {
         })
             .then(res => res.json())
             .then(data => {
-                props.token[1](data.token)
+                props.setToken(data.token)
                 window.location.href = "/"
             })
             .catch(err => console.log(err))
@@ -26,7 +26,7 @@ const Login = (props) => {
 
     return (
         <>
-            {props.token[0] ? <Navigate to="/" /> : <form className="login" onSubmit={e => login(e)}>
+            {props.token ? <Navigate to="/" /> : <form className="login" onSubmit={e => login(e)}>
                 <div>
                     <div className="mb-3">
                         <label for="email" className="form-label">Email</label>
