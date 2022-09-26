@@ -26,3 +26,17 @@ form.register div, form.login div {
     display: flex;
     flex-direction: column;
 }
+
+.alert {
+    top: -115px;
+    height: 100px;
+    opacity: 0;
+    position: fixed !important;
+    width: 70%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}

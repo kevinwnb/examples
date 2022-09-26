@@ -3,7 +3,8 @@ const key = "abcd1234"
 const util = require("util")
 
 const authenticate = (req, res, next) => {
-    console.log(req.get("Authorization"))
+    if (!req.get("Authorization"))
+        return res.status(401).send("Token not provided")
     let token = jwt.verify(req.get("Authorization").substring(7), key)
     if (token)
         return next()
