@@ -4,30 +4,27 @@ const productRouter = require("./routes/product")
 const userRouter = require("./routes/user")
 const app = express()
 
-const unless = (paths, middleware, method = null) => {
+const unless = (paths, middleware) => {
     return function (req, res, next) {
-        if (paths.includes(req.path)) {
-            if (method != null) {
-                if (req.method == method)
-                    return next()
-                else
-                    return middleware(req, res, next)
-            }
-            else {
-                return next()
-            }
+        if (paths.find(p => (p.path == req.path && p.method == req.method))) {
+            console.log({ path: req.path, method: req.method })
+            return next()
         }
-        else
+        else {
+            console.log("bad")
             return middleware(req, res, next)
+        }
     }
 }
 
 app.use("/", express.static("./public"))
 app.use("/products", express.static("./public"))
 app.use("/downloads", express.static("./public"))
+app.use("/login", express.static("./public"))
+app.use("/register", express.static("./public"))
 
-app.use(unless("/api/product", express.json(), "POST"))
-app.use(unless("/api/product", authenticate, "GET"))
+app.use(unless([{ path: "/api/product", method: "POST" }, { path: "/api/user", method: "POST" }], express.json()))
+app.use(unless([{ path: "/api/user/login", method: "POST" }, { path: "/api/product", method: "GET" }, { path: "/api/product", method: "POST" }, { path: "/api/user", method: "POST" }], authenticate))
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
 

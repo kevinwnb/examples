@@ -58,6 +58,7 @@ function Products() {
             })
                 .then(res => res.status)
                 .then(status => {
+                    setProducts(products => products.filter(p => p._id != id))
                     return setReload(reload => reload + 1)
                 })
     }
