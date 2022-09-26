@@ -7,19 +7,20 @@ const key = "abcd1234"
 const path = require("path")
 const fs = require("fs")
 const util = require("util")
+const hash = require("object-hash")
 
 const getUsers = (req, res) => {
     return res.status(200).json(users)
 }
 
 const getUser = (req, res) => {
-    return res.status(200).json(users.find(u => u.id == req.params.id))
+    return res.status(200).json({ msg: "Eureka!" })
 }
 
 const login = (req, res) => {
-    User.findOne({ email: req.body.email, password: jwt.sign(req.body.password, key) }, (err, user) => {
-        let token = jwt.sign(uuidv4(), key)
-        User.updateOne({ email: req.body.email, password: jwt.sign(req.body.password, key) }, { token: token }, (err, result) => {
+    User.findOne({ email: req.body.email, password: hash({ password: req.body.password }) }, (err, user) => {
+        let token = jwt.sign({ user: user._id, token: uuidv4() }, key, { expiresIn: 60 })
+        User.updateOne({ email: req.body.email, password: hash({ password: req.body.password }) }, { token: token }, (err, result) => {
             if (result.acknowledged)
                 return res.status(200).json({ token: token })
         })
@@ -37,7 +38,7 @@ const addUser = (req, res) => {
             model.first_name = fields.first_name
             model.last_name = fields.last_name
             model.email = fields.email
-            model.password = jwt.sign(fields.password, key)
+            model.password = hash({ password: fields.password })
             model.img_path = newpath.substring(9)
             model.token = ""
             model.save((err, result) => {
