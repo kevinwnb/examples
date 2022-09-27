@@ -11,6 +11,7 @@
 .product-form {
     width: 250px;
     margin: 50px auto;
+    position: relative;
 }
 
 form.register, form.login {

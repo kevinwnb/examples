@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import uuidv4 from "uuid"
 import "font-awesome/css/font-awesome.min.css"
+import $ from "jquery"
 
 function Products(props) {
     const [products, setProducts] = useState([])
@@ -44,9 +45,10 @@ function Products(props) {
             .then(res => res.status)
             .then(status => {
                 if (status == 200)
-                    return setReload(reload => reload + 1)
+                    setReload(reload => reload + 1)
 
-                throw Error("An error has ocurred posting the product, please try again")
+                else
+                    throw Error("Authorization token has expired, please log back in to continue")
             })
             .catch(err => props.setError(err.message))
     }
@@ -66,10 +68,8 @@ function Products(props) {
             })
                 .then(res => res.status)
                 .then(status => {
-                    if (status == 200) {
-                        setProducts(products => products.filter(p => p._id != id))
+                    if (status == 200)
                         return setReload(reload => reload + 1)
-                    }
 
                     throw Error("Authorization token has expired, please log back in to continue")
                 })
@@ -78,7 +78,7 @@ function Products(props) {
 
     return (
         <div className="container">
-            {props.token ? <form className="product-form" onSubmit={(e) => { sendProduct(e) }}>
+            {props.token ? <form className="add-product product-form" onSubmit={(e) => { sendProduct(e) }}>
                 <div className="mb-3">
                     <label for="exampleFormControlInput1" className="form-label">Product Name</label>
                     <input className="form-control" type="text" name="name" value={productName} onChange={(e) => setProductName(e.target.value)}></input>

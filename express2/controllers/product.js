@@ -39,8 +39,6 @@ const insertProduct = (req, res) => {
                 console.log(util.inspect(result))
                 return res.status(200).send("Insert successful")
             })
-            //products = [...products, { id: uuidv4(), name: fields.name, img_path: newpath.substring(9) }]
-            //console.log(products)
         });
     });
 }
