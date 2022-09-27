@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import uuidv4 from "uuid"
 import "font-awesome/css/font-awesome.min.css"
 
-function Products() {
+function Products(props) {
     const [products, setProducts] = useState([])
     const [productName, setProductName] = useState("")
     const [productImage, setProductImage] = useState([])
@@ -35,13 +35,20 @@ function Products() {
 
         fetch("/api/product", {
             method: "POST",
+            headers: {
+                "Authorization": "bearer " + props.token
+            },
             body: formData
 
         })
             .then(res => res.status)
             .then(status => {
-                return setReload(reload => reload + 1)
+                if (status == 200)
+                    return setReload(reload => reload + 1)
+
+                throw Error("An error has ocurred posting the product, please try again")
             })
+            .catch(err => props.setError(err.message))
     }
 
     const deleteProduct = id => {
@@ -49,7 +56,8 @@ function Products() {
             fetch("/api/product", {
                 method: "DELETE",
                 headers: {
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    "Authorization": "bearer " + props.token
                 },
                 body: JSON.stringify({
                     id: id,
@@ -58,14 +66,19 @@ function Products() {
             })
                 .then(res => res.status)
                 .then(status => {
-                    setProducts(products => products.filter(p => p._id != id))
-                    return setReload(reload => reload + 1)
+                    if (status == 200) {
+                        setProducts(products => products.filter(p => p._id != id))
+                        return setReload(reload => reload + 1)
+                    }
+
+                    throw Error("Authorization token has expired, please log back in to continue")
                 })
+                .catch(err => props.setError(err.message))
     }
 
     return (
         <div className="container">
-            <form className="product-form" onSubmit={(e) => { sendProduct(e) }}>
+            {props.token ? <form className="product-form" onSubmit={(e) => { sendProduct(e) }}>
                 <div className="mb-3">
                     <label for="exampleFormControlInput1" className="form-label">Product Name</label>
                     <input className="form-control" type="text" name="name" value={productName} onChange={(e) => setProductName(e.target.value)}></input>
@@ -75,8 +88,8 @@ function Products() {
                     <input className="form-control" type="file" name="product_image" onChange={(e) => setProductImage(e.target.files)}></input>
                 </div>
                 <input type="hidden" value="Kevin" name="user"></input>
-                <button className="btn btn-success" type="submit">Send</button>
-            </form>
+                <button className="btn btn-success" type="submit" disabled={!productName || !productImage || productImage.length == 0}>Send</button>
+            </form> : <p className="alert alert-danger mx-auto my-5">Sign in to post a product</p>}
 
             <div className="row products">
                 {products.map(p => {

@@ -27,7 +27,7 @@ form.register div, form.login div {
     flex-direction: column;
 }
 
-.alert {
+.error.alert {
     top: -115px;
     height: 100px;
     opacity: 0;

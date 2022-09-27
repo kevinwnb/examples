@@ -3,11 +3,11 @@ const authenticate = require("./auth")
 const productRouter = require("./routes/product")
 const userRouter = require("./routes/user")
 const app = express()
+const jwt = require("jsonwebtoken")
 
 const unless = (paths, middleware) => {
     return function (req, res, next) {
         if (paths.find(p => (p.path == req.path && p.method == req.method))) {
-            console.log({ path: req.path, method: req.method })
             return next()
         }
         else {

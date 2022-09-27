@@ -47,14 +47,14 @@ function App() {
 
   return (
     <div className="App">
-      <div className="mt-3 alert alert-danger" role="alert">
+      <div className="error mt-3 alert alert-danger" role="alert">
         {error}
       </div>
       <Navigation logout={logout} token={token} />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/downloads' element={<Downloads />}></Route>
-        <Route path='/products' element={<Products />}></Route>
+        <Route path='/products' element={<Products setError={setError} token={token} />}></Route>
         <Route path='/login' element={<Login setError={setError} token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>

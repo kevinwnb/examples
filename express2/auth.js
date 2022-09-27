@@ -9,7 +9,6 @@ const authenticate = (req, res, next) => {
     if (token)
         return next()
     else {
-        console.log(token)
         return res.status(404).send("Authentication error")
     }
 }
