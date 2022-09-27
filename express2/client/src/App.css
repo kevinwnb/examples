@@ -40,4 +40,5 @@ form.register div, form.login div {
     margin-right: auto;
     display: flex;
     align-items: center;
+    z-index: 2;
 }
