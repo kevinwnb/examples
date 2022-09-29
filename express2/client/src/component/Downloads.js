@@ -1,7 +1,8 @@
 
 
 
-function Downloads(){
+function Downloads(props){
+props.setActiveLink("downloads")
     return (
         <p>Downloads</p>
     )

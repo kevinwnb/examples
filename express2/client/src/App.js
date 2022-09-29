@@ -18,6 +18,7 @@ function App() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [activeLink, setActiveLink] = useState("home")
 
   useEffect(() => {
     if (token)
@@ -50,11 +51,11 @@ function App() {
       <div className="error mt-3 alert alert-danger" role="alert">
         {error}
       </div>
-      <Navigation logout={logout} token={token} />
+      <Navigation activeLink={activeLink} logout={logout} token={token} />
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/downloads' element={<Downloads />}></Route>
-        <Route path='/products' element={<Products setError={setError} token={token} />}></Route>
+        <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
+        <Route path='/downloads' element={<Downloads setActiveLink={setActiveLink} />}></Route>
+        <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
         <Route path='/login' element={<Login setError={setError} token={token} setToken={setToken} />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>

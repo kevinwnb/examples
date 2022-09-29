@@ -4,6 +4,9 @@ import "font-awesome/css/font-awesome.min.css"
 import $ from "jquery"
 
 function Products(props) {
+
+props.setActiveLink("products")
+
     const [products, setProducts] = useState([])
     const [productName, setProductName] = useState("")
     const [productImage, setProductImage] = useState([])

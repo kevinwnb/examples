@@ -42,3 +42,23 @@ form.register div, form.login div {
     align-items: center;
     z-index: 2;
 }
+
+nav {
+    padding: 20px 40px;
+    background-color: darkolivegreen;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+nav a.active {
+    text-decoration: underline;
+}
