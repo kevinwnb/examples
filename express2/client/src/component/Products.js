@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import uuidv4 from "uuid"
-import "font-awesome/css/font-awesome.min.css"
 import $ from "jquery"
 
 function Products(props) {
 
-props.setActiveLink("products")
+    props.setActiveLink("products")
 
     const [products, setProducts] = useState([])
     const [productName, setProductName] = useState("")
@@ -92,14 +91,14 @@ props.setActiveLink("products")
                 </div>
                 <input type="hidden" value="Kevin" name="user"></input>
                 <button className="btn btn-success" type="submit" disabled={!productName || !productImage || productImage.length == 0}>Send</button>
-            </form> : <p className="alert alert-danger mx-auto my-5">Sign in to post a product</p>}
+            </form> : <p className="alert alert-info position-relative">Sign in to post a product</p>}
 
             <div className="row products">
                 {products.map(p => {
                     return (
                         <div className="col-md-3">
                             <div className="m-2">
-                                <a id={p._id} onClick={() => deleteProduct(p._id)} className="btn btn-danger position-absolute"><i className="fa fa-close"></i></a>
+                                {props.token && <a id={p._id} onClick={() => deleteProduct(p._id)} className="btn btn-danger position-absolute"><i className="fa fa-close"></i></a>}
                                 <img className="w-100" src={p.img_path} />
                                 <h3>{p.name}</h3>
                             </div>

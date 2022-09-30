@@ -1,10 +1,10 @@
 
 
 
-function Downloads(props){
-props.setActiveLink("downloads")
+function Downloads(props) {
+    props.setActiveLink("downloads")
     return (
-        <p>Downloads</p>
+        <div className="main">Downloads</div>
     )
 }
 

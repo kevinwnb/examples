@@ -4,6 +4,8 @@ import { Navigate } from "react-router-dom"
 
 const Login = (props) => {
 
+    props.setActiveLink("login")
+
     const [email, setEmail] = useState("kevinwnb@gmail.com")
     const [password, setPassword] = useState("kikoblu")
 

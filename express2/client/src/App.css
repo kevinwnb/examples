@@ -10,7 +10,7 @@
 
 .product-form {
     width: 250px;
-    margin: 50px auto;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -19,7 +19,7 @@ form.register, form.login {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: calc(100vh - 24px);
+    min-height: 100vh;
 }
 
 form.register div, form.login div {
@@ -43,9 +43,22 @@ form.register div, form.login div {
     z-index: 2;
 }
 
+.container {
+    top: 138px;
+    position: relative;
+}
+
+form.product-form {
+    margin-bottom: 50px;
+}
+
 nav {
     padding: 20px 40px;
     background-color: darkolivegreen;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
 }
 
 nav a {
@@ -61,4 +74,46 @@ nav a:hover {
 
 nav a.active {
     text-decoration: underline;
+}
+
+nav div.authentication {
+    margin-left: auto;
+}
+
+nav a.logout {
+    margin-left: auto;
+}
+
+.menu-bars {
+    font-size: 2rem;
+}
+
+.menu {
+    position: absolute;
+    background-color: black;
+    width: 0;
+    height: 100vh;
+    transition: width 0.5s;
+}
+
+.menu .xclose {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+}
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+@media only screen and (min-width: 630px){
+    .menu-bars {
+        display: none;
+    }
 }

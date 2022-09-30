@@ -1,10 +1,12 @@
 
 
 
-function Home(props){
-props.setActiveLink("home")
+function Home(props) {
+    props.setActiveLink("home")
     return (
-        <p>Home</p>
+        <div className="main">
+            Home
+        </div>
     )
 }
 

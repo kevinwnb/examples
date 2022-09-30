@@ -11,6 +11,7 @@ import Register from './component/Register';
 import Login from './component/Login';
 import { useState, useEffect } from 'react';
 import $ from "jquery"
+import "font-awesome/css/font-awesome.min.css"
 
 function App() {
 
@@ -32,9 +33,9 @@ function App() {
   useEffect(() => {
     console.log(error)
     if (error) {
-      $(".alert").animate({ top: "+=115px", opacity: 1 }, 250, () => {
+      $(".error").animate({ top: "+=115px", opacity: 1 }, 250, () => {
         setTimeout(() => {
-          $(".alert").animate({ top: "-=115px", opacity: 0 }, 250, () => {
+          $(".error").animate({ top: "-=115px", opacity: 0 }, 250, () => {
             setError("")
           })
         }, 3000);
@@ -56,8 +57,8 @@ function App() {
         <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
         <Route path='/downloads' element={<Downloads setActiveLink={setActiveLink} />}></Route>
         <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
-        <Route path='/login' element={<Login setError={setError} token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register />}></Route>
+        <Route path='/login' element={<Login setActiveLink={setActiveLink} setError={setError} token={token} setToken={setToken} />}></Route>
+        <Route path='/register' element={<Register setActiveLink={setActiveLink} />}></Route>
       </Routes>
     </div>
   );

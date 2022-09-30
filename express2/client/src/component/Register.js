@@ -1,7 +1,9 @@
 import { useState } from "react"
 
 
-const Register = () => {
+const Register = (props) => {
+
+    props.setActiveLink("register")
 
     const [profileImage, setProfileImage] = useState([])
     const [firstName, setFirstName] = useState("")
@@ -32,23 +34,23 @@ const Register = () => {
         <form className="register" onSubmit={e => register(e)}>
             <div>
                 <div className="mb-3">
-                    <label className="form-label" for="profile_image">Profile Image</label>
+                    <label className="form-label" htmlFor="profile_image">Profile Image</label>
                     <input name="profile_image" className="form-control" type="file" onChange={e => setProfileImage(e.target.files)}></input>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" for="first_name">First Name</label>
+                    <label className="form-label" htmlFor="first_name">First Name</label>
                     <input name="first_name" className="form-control" value={firstName} onChange={e => setFirstName(e.target.value)}></input>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" for="last_name">Last Name</label>
+                    <label className="form-label" htmlFor="last_name">Last Name</label>
                     <input name="last_name" className="form-control" value={lastName} onChange={e => setLastName(e.target.value)}></input>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" for="email">Email</label>
+                    <label className="form-label" htmlFor="email">Email</label>
                     <input name="email" className="form-control" type="email" value={email} onChange={e => setEmail(e.target.value)}></input>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" for="password">Password</label>
+                    <label className="form-label" htmlFor="password">Password</label>
                     <input name="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)}></input>
                 </div>
                 <button type="submit" className="btn btn-success">Register</button>
