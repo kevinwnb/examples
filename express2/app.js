@@ -4,6 +4,10 @@ const productRouter = require("./routes/product")
 const userRouter = require("./routes/user")
 const app = express()
 const jwt = require("jsonwebtoken")
+const dotenv = require("dotenv")
+dotenv.config()
+const mongoose = require("mongoose")
+mongoose.connect(process.env.CONN)
 
 const unless = (paths, middleware) => {
     return function (req, res, next) {

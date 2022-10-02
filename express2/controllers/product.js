@@ -4,8 +4,6 @@ let products = require("../products")
 const formidable = require("formidable")
 const fs = require("fs")
 const path = require("path")
-const mongoose = require("mongoose")
-const conn = mongoose.connect('mongodb+srv://kevinwnb:yflOIONVToQYHIw1@cluster0.e3ffr.mongodb.net/express2?retryWrites=true&w=majority')
 const Product = require("../models/product")
 
 const getProducts = (req, res) => {
