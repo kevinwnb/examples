@@ -36,6 +36,6 @@ app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
 })
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
     console.log("Server is running on port 5500...")
 })
