@@ -21,7 +21,7 @@ const unless = (paths, middleware) => {
     }
 }
 
-// app.use("/", express.static("./client/build"))
+app.use(express.static("./client/build"))
 // app.use("/products", express.static("./client/build"))
 // app.use("/downloads", express.static("./client/build"))
 // app.use("/login", express.static("./client/build"))
