@@ -8,6 +8,8 @@ const dotenv = require("dotenv")
 dotenv.config()
 const mongoose = require("mongoose")
 mongoose.connect(process.env.CONN)
+const path = require("path")
+const fs = require("fs")
 
 const unless = (paths, middleware) => {
     return function (req, res, next) {
@@ -15,10 +17,15 @@ const unless = (paths, middleware) => {
             return next()
         }
         else {
-            console.log("bad")
             return middleware(req, res, next)
         }
     }
+}
+
+let dir = "./client/build/assets/images"
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir, { recursive: true });
 }
 
 app.use(express.static("./client/build"))
@@ -28,7 +35,7 @@ app.use(express.static("./client/build"))
 // app.use("/register", express.static("./client/build"))
 
 app.use(unless([{ path: "/api/product", method: "POST" }, { path: "/api/user", method: "POST" }], express.json()))
-app.use(unless([{ path: "/api/user/login", method: "POST" }, { path: "/api/product", method: "GET" }, { path: "/api/user", method: "POST" }], authenticate))
+app.use(unless([{ path: "/login", method: "GET" }, { path: "/api/user/login", method: "POST" }, { path: "/api/product", method: "GET" }, { path: "/api/user", method: "POST" }], authenticate))
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
 
@@ -37,5 +44,5 @@ app.get("*", (req, res) => {
 })
 
 app.listen(process.env.PORT, () => {
-    console.log("Server is running on port 5500...")
+    console.log("Server is running on port " + process.env.PORT + " ...")
 })

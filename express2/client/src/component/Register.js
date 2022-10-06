@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const Register = (props) => {
@@ -53,7 +53,7 @@ const Register = (props) => {
                     <label className="form-label" htmlFor="password">Password</label>
                     <input name="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)}></input>
                 </div>
-                <button type="submit" className="btn btn-success">Register</button>
+                <button type="submit" className="btn btn-success" disabled={profileImage.length == 0 || !firstName || !lastName || !email || !password}>Register</button>
             </div>
         </form>
     )

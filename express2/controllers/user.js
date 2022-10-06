@@ -32,15 +32,17 @@ const addUser = (req, res) => {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var oldpath = files.profile_image.filepath;
-        var newpath = "./public/images/" + uuidv4() + path.extname(files.profile_image.originalFilename);
+        var basePath = "./client/build/"
+        var newpath = basePath + "assets/images/" + uuidv4() + path.extname(files.profile_image.originalFilename);
         fs.rename(oldpath, newpath, function (err) {
-            if (err) throw err
+            if (err)
+                throw err
             let model = new User()
             model.first_name = fields.first_name
             model.last_name = fields.last_name
             model.email = fields.email
             model.password = hash({ password: fields.password })
-            model.img_path = newpath.substring(9)
+            model.img_path = newpath.substring(basePath.length)
             model.token = ""
             model.save((err, result) => {
                 if (err)
