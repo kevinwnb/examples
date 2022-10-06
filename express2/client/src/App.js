@@ -16,9 +16,8 @@ import "font-awesome/css/font-awesome.min.css"
 function App() {
 
   const [token, setToken] = useState(localStorage.getItem("token") || "")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
   const [activeLink, setActiveLink] = useState("home")
 
   useEffect(() => {
@@ -41,7 +40,17 @@ function App() {
         }, 3000);
       })
     }
-  }, [error])
+
+    if (success) {
+      $(".success").animate({ top: "+=115px", opacity: 1 }, 250, () => {
+        setTimeout(() => {
+          $(".success").animate({ top: "-=115px", opacity: 0 }, 250, () => {
+            setSuccess("")
+          })
+        }, 3000);
+      })
+    }
+  }, [error, success])
 
   const logout = () => {
     setToken("")
@@ -52,13 +61,16 @@ function App() {
       <div className="error mt-3 alert alert-danger" role="alert">
         {error}
       </div>
+      <div className="success mt-3 alert alert-success" role="alert">
+        {success}
+      </div>
       <Navigation activeLink={activeLink} logout={logout} token={token} />
       <Routes>
         <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
         <Route path='/downloads' element={<Downloads setActiveLink={setActiveLink} />}></Route>
         <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
         <Route path='/login' element={<Login setActiveLink={setActiveLink} setError={setError} token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register setActiveLink={setActiveLink} />}></Route>
+        <Route path='/register' element={<Register setSuccess={setSuccess} setActiveLink={setActiveLink} />}></Route>
       </Routes>
     </div>
   );
