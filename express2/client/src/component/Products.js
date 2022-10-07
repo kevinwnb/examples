@@ -80,6 +80,7 @@ function Products(props) {
 
     return (
         <div className="container">
+            <h2 className="text-center mb-5">Products</h2>
             {props.token ? <form className="add-product product-form" onSubmit={(e) => { sendProduct(e) }}>
                 <div className="mb-3">
                     <label for="exampleFormControlInput1" className="form-label">Product Name</label>

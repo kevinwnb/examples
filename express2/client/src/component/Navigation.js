@@ -11,32 +11,45 @@ function Navigation(props) {
 
     useEffect(() => {
         if (isMenuOpen) {
-
             $("body").css("overflow", "hidden")
-            $(".menu").css("width", "100%")
+            $(".menu-absoluter").css({ display: "initial", opacity: "1" })
+            $(".menu").css("left", "0")
         }
         else {
-
             $("body").css("overflow", "visible")
-            $(".menu").css("width", "0")
+            $(".menu-absoluter").css({ display: "none", opacity: "0" })
+            $(".menu").css("left", "-300px")
         }
     }, [isMenuOpen])
 
     return (
         <>
+            <div className="menu-absoluter" onClick={() => setIsMenuOpen(false)}>
+            </div>
             <div className="menu">
-                <a href="javascript:void(0)" onClick={toggleMenu} className="xclose"><i className="fa-solid fa-xmark"></i> c</a>
+                <div className="pre-xclose">
+                    <a href="javascript:void(0)" onClick={toggleMenu} className="xclose h1"><i className="fa fa-times"></i></a>
+                </div>
+                <div className="items">
+                    <a href="#">Item 1</a>
+                    <a href="#">Item 1</a>
+                    <a href="#">Item 1</a>
+                    <a href="#">Item 1</a>
+                    <a href="#">Item 1</a>
+                </div>
             </div>
             <nav>
                 <a href="javascript:void(0)" onClick={toggleMenu} className="menu-bars"><i className="fa fa-bars"></i></a>
-                <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
-                <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
-                <Link className={(props.activeLink == "products" ? "active" : "")} to="/products">Products</Link>
-                {!props.token && <div className="authentication">
-                    <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
-                    <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
-                </div>}
-                {props.token && <a href="javascript:void(0)" className="logout btn btn-outline-danger" onClick={() => props.logout()}>Logout</a>}
+                <div className="menu-inline">
+                    <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
+                    <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
+                    <Link className={(props.activeLink == "products" ? "active" : "")} to="/products">Products</Link>
+                    {!props.token && <div className="authentication">
+                        <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
+                        <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
+                    </div>}
+                    {props.token && <a href="javascript:void(0)" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
+                </div>
             </nav>
         </>
     )
