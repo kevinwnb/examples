@@ -25,13 +25,12 @@ const insertProduct = (req, res) => {
     var form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
         var oldpath = files.product_image.filepath
-        var basePath = "./client/build/"
-        var newpath = basePath + "assets/images/" + uuidv4() + path.extname(files.product_image.originalFilename);
+        var newpath = "./uploads/" + uuidv4() + path.extname(files.product_image.originalFilename);
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
             let model = new Product()
             model.name = fields.name
-            model.img_path = newpath.substring(basePath.length)
+            model.img_path = newpath.substring(1)
             model.save((err, result) => {
                 if (err)
                     throw err.message

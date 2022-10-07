@@ -22,17 +22,8 @@ const unless = (paths, middleware) => {
     }
 }
 
-let dir = "./client/build/assets/images"
-
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir, { recursive: true });
-}
-
 app.use(express.static("./client/build"))
-// app.use("/products", express.static("./client/build"))
-// app.use("/downloads", express.static("./client/build"))
-// app.use("/login", express.static("./client/build"))
-// app.use("/register", express.static("./client/build"))
+app.use("/uploads", express.static("./uploads"))
 
 app.use(unless([{ path: "/api/product", method: "POST" }, { path: "/api/user", method: "POST" }], express.json()))
 app.use("/api/product", productRouter)
