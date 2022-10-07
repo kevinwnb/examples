@@ -20,7 +20,7 @@ const login = (req, res) => {
     User.findOne({ email: req.body.email, password: hash({ password: req.body.password }) }, (err, user) => {
         if (!user)
             return res.status(404).send("No user was found")
-        let token = jwt.sign({ user: user._id, token: uuidv4() }, process.env.SECRET, { expiresIn: 60 })
+        let token = jwt.sign({ user: user._id, token: uuidv4() }, process.env.SECRET, { expiresIn: 600 })
         User.updateOne({ email: req.body.email, password: hash({ password: req.body.password }) }, { token: token }, (err, result) => {
             if (result.acknowledged)
                 return res.status(200).json({ token: token })

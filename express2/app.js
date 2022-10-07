@@ -35,7 +35,6 @@ app.use(express.static("./client/build"))
 // app.use("/register", express.static("./client/build"))
 
 app.use(unless([{ path: "/api/product", method: "POST" }, { path: "/api/user", method: "POST" }], express.json()))
-app.use(unless([{ path: "/login", method: "GET" }, { path: "/api/user/login", method: "POST" }, { path: "/api/product", method: "GET" }, { path: "/api/user", method: "POST" }], authenticate))
 app.use("/api/product", productRouter)
 app.use("/api/user", userRouter)
 

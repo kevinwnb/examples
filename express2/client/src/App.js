@@ -65,13 +65,15 @@ function App() {
         {success}
       </div>
       <Navigation activeLink={activeLink} logout={logout} token={token} />
-      <Routes>
-        <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
-        <Route path='/downloads' element={<Downloads setActiveLink={setActiveLink} />}></Route>
-        <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
-        <Route path='/login' element={<Login setActiveLink={setActiveLink} setError={setError} token={token} setToken={setToken} />}></Route>
-        <Route path='/register' element={<Register setSuccess={setSuccess} setActiveLink={setActiveLink} />}></Route>
-      </Routes>
+      <div className="wrapper">
+        <Routes>
+          <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
+          <Route path='/downloads' element={<Downloads token={token} setActiveLink={setActiveLink} />}></Route>
+          <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
+          <Route path='/login' element={<Login setActiveLink={setActiveLink} setError={setError} token={token} setToken={setToken} />}></Route>
+          <Route path='/register' element={<Register setSuccess={setSuccess} setActiveLink={setActiveLink} />}></Route>
+        </Routes>
+      </div>
     </div>
   );
 }

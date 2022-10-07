@@ -31,7 +31,7 @@ const Register = (props) => {
                     console.log(s)
                     props.setSuccess("Usuario registrado con éxito")
                     setSuccess(true)
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         window.location.href = "/login"
                     }, 3000)
                 }
@@ -40,6 +40,7 @@ const Register = (props) => {
 
     return (
         <>
+            <h2 className="text-center mb-5">Register</h2>
             {!success && <form className="register" onSubmit={e => register(e)}>
                 <div>
                     <div className="mb-3">

@@ -19,7 +19,7 @@ form.register, form.login {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 form.register div, form.login div {
@@ -43,18 +43,13 @@ form.register div, form.login div {
     z-index: 2;
 }
 
-.container {
-    top: 138px;
-    position: relative;
-}
-
 form.product-form {
     margin-bottom: 50px;
 }
 
 nav {
     padding: 20px 40px;
-    background-color: darkolivegreen;
+    background-color: #3c3c3c;
     display: flex;
     align-items: center;
     position: fixed;
@@ -110,6 +105,35 @@ nav a.logout {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+}
+
+div.downloads {
+    display: flex;
+    flex-direction: column;
+}
+
+div.downloads > div {
+    margin: 10px 0;
+    display: flex;
+    color: white;
+    align-items: center;
+    padding: 10px 50px;
+    background-color: #3c3c3c;
+}
+
+div.downloads div i {
+    font-size: 3rem;
+    margin-left: auto;
+}
+
+div.downloads div button {
+    margin-left: auto;
+}
+
+div.wrapper {
+    position: relative;
+    top: calc(+134px);
+    min-height: calc(100vh - 134px);
 }
 
 @media only screen and (min-width: 630px){

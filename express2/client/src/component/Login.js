@@ -29,14 +29,16 @@ const Login = (props) => {
                     props.setToken(data.token)
                     window.location.href = "/"
                 }
-
-                throw Error("Invalid Credentials")
+                else {
+                    throw Error("Invalid Credentials")
+                }
             })
             .catch(err => props.setError(err.message))
     }
 
     return (
         <>
+            <h2 className="text-center mb-5">Login</h2>
             {props.token ? <Navigate to="/" /> : <form className="login" onSubmit={e => login(e)}>
                 <div>
                     <div className="mb-3">

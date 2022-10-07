@@ -34,7 +34,7 @@ const insertProduct = (req, res) => {
             model.img_path = newpath.substring(basePath.length)
             model.save((err, result) => {
                 if (err)
-                    throw err
+                    throw err.message
                 console.log(util.inspect(result))
                 return res.status(200).send("Insert successful")
             })
