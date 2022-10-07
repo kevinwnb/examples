@@ -26,7 +26,7 @@ const insertProduct = (req, res) => {
     form.parse(req, function (err, fields, files) {
         var oldpath = files.product_image.filepath
         var newpath = "./uploads/" + uuidv4() + path.extname(files.product_image.originalFilename);
-        fs.rename(oldpath, newpath, function (err) {
+        fs.copyFile(oldpath, newpath, function (err) {
             if (err) throw err;
             let model = new Product()
             model.name = fields.name

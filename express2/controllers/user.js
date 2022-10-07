@@ -33,7 +33,7 @@ const addUser = (req, res) => {
     form.parse(req, function (err, fields, files) {
         var oldpath = files.profile_image.filepath;
         var newpath = "./uploads/" + uuidv4() + path.extname(files.profile_image.originalFilename);
-        fs.rename(oldpath, newpath, function (err) {
+        fs.copyFile(oldpath, newpath, function (err) {
             if (err)
                 throw err
             let model = new User()
