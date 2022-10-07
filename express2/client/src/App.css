@@ -111,12 +111,18 @@ nav a.logout {
     align-items: flex-start;
     top: 50px;
     position: relative;
-    left: 20px;
 }
 
 .menu .items a {
     color: white;
     font-size: 2rem;
+    text-decoration: none;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.menu .items a.active {
+    background-color: cadetblue;
 }
 
 .menu-absoluter {

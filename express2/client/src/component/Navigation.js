@@ -31,11 +31,14 @@ function Navigation(props) {
                     <a href="javascript:void(0)" onClick={toggleMenu} className="xclose h1"><i className="fa fa-times"></i></a>
                 </div>
                 <div className="items">
-                    <a href="#">Item 1</a>
-                    <a href="#">Item 1</a>
-                    <a href="#">Item 1</a>
-                    <a href="#">Item 1</a>
-                    <a href="#">Item 1</a>
+                    <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
+                    <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
+                    <Link className={(props.activeLink == "products" ? "active" : "")} to="/products">Products</Link>
+                    {!props.token && <>
+                        <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
+                        <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
+                    </>}
+                    {props.token && <a href="javascript:void(0)" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
                 </div>
             </div>
             <nav>
