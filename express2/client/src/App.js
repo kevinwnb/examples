@@ -1,17 +1,16 @@
-import logo from './logo.svg';
+import "bootstrap/dist/css/bootstrap.css"
+import "font-awesome/css/font-awesome.min.css"
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './component/Home';
 import Downloads from './component/Downloads';
 import Navigation from './component/Navigation';
 import Products from './component/Products';
-import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap"
 import Register from './component/Register';
 import Login from './component/Login';
 import { useState, useEffect } from 'react';
 import $ from "jquery"
-import "font-awesome/css/font-awesome.min.css"
 
 function App() {
 

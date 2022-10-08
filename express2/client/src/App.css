@@ -54,6 +54,7 @@ nav {
     align-items: center;
     position: fixed;
     width: 100%;
+    min-height: calc(2rem + 40px);
 }
 
 nav a {
@@ -79,7 +80,7 @@ nav a.logout {
     margin-left: auto;
 }
 
-.menu-bars {
+.menu-bars i {
     font-size: 2rem;
 }
 
@@ -169,8 +170,8 @@ div.downloads div button {
 }
 
 div.wrapper {
-    padding-top: 138px;
-    min-height: calc(100vh - 134px);
+    padding-top: 123px;
+    min-height: calc(100vh - 123px);
 }
 
 .menu-inline {
@@ -185,9 +186,5 @@ div.wrapper {
 
     .menu-inline {
         display: flex;
-    }
-
-    div.wrapper {
-        padding-top: 114px;
     }
 }
