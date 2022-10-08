@@ -30,10 +30,9 @@ const Register = (props) => {
                 if (s == 200) {
                     console.log(s)
                     props.setSuccess("Usuario registrado con éxito")
-                    setSuccess(true)
                     setTimeout(() => {
                         window.location.href = "/login"
-                    }, 3000)
+                    }, 3250)
                 }
             })
     }
