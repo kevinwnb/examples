@@ -28,7 +28,7 @@ function Navigation(props) {
             </div>
             <div className="menu">
                 <div className="pre-xclose">
-                    <a href="javascript:void(0)" onClick={toggleMenu} className="xclose h1"><i className="fa fa-times"></i></a>
+                    <a href="#" onClick={toggleMenu} className="xclose h1"><i className="fa fa-times"></i></a>
                 </div>
                 <div className="items">
                     <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
@@ -38,11 +38,11 @@ function Navigation(props) {
                         <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
                         <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
                     </>}
-                    {props.token && <a href="javascript:void(0)" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
+                    {props.token && <a href="#" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
                 </div>
             </div>
             <nav>
-                <a href="javascript:void(0)" onClick={toggleMenu} className="menu-bars"><i className="fa fa-bars"></i></a>
+                <a href="#" onClick={toggleMenu} className="menu-bars"><i className="fa fa-bars"></i></a>
                 <div className="menu-inline">
                     <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
                     <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
@@ -51,7 +51,7 @@ function Navigation(props) {
                         <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
                         <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
                     </div>}
-                    {props.token && <a href="javascript:void(0)" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
+                    {props.token && <a href="#" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
                 </div>
             </nav>
         </>

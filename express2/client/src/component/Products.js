@@ -10,6 +10,7 @@ function Products(props) {
     const [productName, setProductName] = useState("")
     const [productImage, setProductImage] = useState([])
     const [reload, setReload] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getProducts()
@@ -28,6 +29,7 @@ function Products(props) {
         })
             .then(res => res.json())
             .then(data => setProducts(data))
+            .then(() => setIsLoading(false))
     }
 
     const sendProduct = (e) => {
@@ -83,11 +85,11 @@ function Products(props) {
             <h2 className="text-center mb-5">Products</h2>
             {props.token ? <form className="add-product product-form" onSubmit={(e) => { sendProduct(e) }}>
                 <div className="mb-3">
-                    <label for="exampleFormControlInput1" className="form-label">Product Name</label>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Product Name</label>
                     <input className="form-control" type="text" name="name" value={productName} onChange={(e) => setProductName(e.target.value)}></input>
                 </div>
                 <div className="mb-3">
-                    <label for="exampleFormControlInput1" className="form-label">Product Image</label>
+                    <label htmlFor="exampleFormControlInput1" className="form-label">Product Image</label>
                     <input className="form-control" type="file" name="product_image" onChange={(e) => setProductImage(e.target.files)}></input>
                 </div>
                 <input type="hidden" value="Kevin" name="user"></input>
@@ -95,9 +97,12 @@ function Products(props) {
             </form> : <p className="alert alert-info position-relative">Sign in to post a product</p>}
 
             <div className="row products">
+                {isLoading && <div className="my-5 loading">
+                    <i className="fa fa-spinner"></i>
+                </div>}
                 {products.map(p => {
                     return (
-                        <div className="col-md-3">
+                        <div key={p._id} className="col-md-3">
                             <div className="m-2">
                                 {props.token && <a id={p._id} onClick={() => deleteProduct(p._id)} className="btn btn-danger position-absolute"><i className="fa fa-close"></i></a>}
                                 <img className="w-100" src={p.img_path} />
