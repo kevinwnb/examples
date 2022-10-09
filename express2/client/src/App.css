@@ -1,5 +1,4 @@
 .products div div {
-    height: 100%;
     padding: 10px;
     background-color: #C0C0C0;
     position: relative;
@@ -7,6 +6,10 @@
 
 .products div div a {
     right: 10px;
+}
+
+.products div div h3 {
+    margin: 10px;
 }
 
 .product-form {

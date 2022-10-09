@@ -96,7 +96,7 @@ function Products(props) {
                 <button className="btn btn-success" type="submit" disabled={!productName || !productImage || productImage.length == 0}>Send</button>
             </form> : <p className="alert alert-info position-relative">Sign in to post a product</p>}
 
-            <div className="row align-items-stretch products">
+            <div className="row products">
                 {isLoading && <div className="my-5 loading">
                     <i className="fa fa-spinner"></i>
                 </div>}
