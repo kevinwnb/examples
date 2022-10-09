@@ -59,6 +59,7 @@ nav {
     position: fixed;
     width: 100%;
     min-height: calc(2rem + 40px);
+    z-index: 1;
 }
 
 nav a {
