@@ -96,13 +96,13 @@ function Products(props) {
                 <button className="btn btn-success" type="submit" disabled={!productName || !productImage || productImage.length == 0}>Send</button>
             </form> : <p className="alert alert-info position-relative">Sign in to post a product</p>}
 
-            <div className="row products">
+            <div className="row align-items-stretch products">
                 {isLoading && <div className="my-5 loading">
                     <i className="fa fa-spinner"></i>
                 </div>}
                 {products.map(p => {
                     return (
-                        <div key={p._id} className="col-md-3">
+                        <div key={p._id} className="col-md-3 mb-3">
                             <div className="m-2">
                                 {props.token && <a id={p._id} onClick={() => deleteProduct(p._id)} className="btn btn-danger position-absolute"><i className="fa fa-close"></i></a>}
                                 <img className="w-100" src={p.img_path} />

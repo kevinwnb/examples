@@ -1,4 +1,5 @@
 .products div div {
+    height: 100%;
     padding: 10px;
     background-color: #C0C0C0;
     position: relative;
