@@ -11,6 +11,7 @@ import Register from './component/Register';
 import Login from './component/Login';
 import { useState, useEffect } from 'react';
 import $ from "jquery"
+import Shop from "./component/Shop";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const [activeLink, setActiveLink] = useState("home")
+  const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
     if (token)
@@ -63,12 +65,13 @@ function App() {
       <div className="success mt-3 alert alert-success" role="alert">
         {success}
       </div>
-      <Navigation activeLink={activeLink} logout={logout} token={token} />
+      <Navigation cartItems={cartItems} activeLink={activeLink} logout={logout} token={token} />
       <div className="wrapper">
         <Routes>
           <Route path='/' element={<Home setActiveLink={setActiveLink} />}></Route>
           <Route path='/downloads' element={<Downloads token={token} setActiveLink={setActiveLink} />}></Route>
           <Route path='/products' element={<Products setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
+          <Route path='/shop' element={<Shop setCartItems={setCartItems} setActiveLink={setActiveLink} setError={setError} token={token} />}></Route>
           <Route path='/login' element={<Login setActiveLink={setActiveLink} setError={setError} token={token} setToken={setToken} />}></Route>
           <Route path='/register' element={<Register setSuccess={setSuccess} setActiveLink={setActiveLink} />}></Route>
         </Routes>

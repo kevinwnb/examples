@@ -201,6 +201,10 @@ div.loading i {
     animation-timing-function: linear;
 }
 
+p.shopping-cart {
+    font-size: 1.5rem;
+}
+
 @keyframes spinner {
     100% {
         transform: rotate(360deg);
@@ -214,5 +218,6 @@ div.loading i {
 
     .menu-inline {
         display: flex;
+        align-items: center;
     }
 }

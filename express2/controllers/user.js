@@ -21,7 +21,7 @@ const login = (req, res) => {
         if (err) throw new Error(err.message)
         if (!user)
             return res.status(404).send("No user was found")
-        let token = jwt.sign({ user: user._id, token: uuidv4() }, process.env.SECRET, { expiresIn: 600 })
+        let token = jwt.sign({ user_id: user._id, user: user._id, token: uuidv4() }, process.env.SECRET, { expiresIn: 600 })
         User.updateOne({ email: req.body.email, password: hash({ password: req.body.password }) }, { token: token }, (err, result) => {
             if (result.acknowledged)
                 return res.status(200).json({ token: token })

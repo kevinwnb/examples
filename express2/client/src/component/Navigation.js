@@ -34,6 +34,7 @@ function Navigation(props) {
                     <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
                     <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
                     <Link className={(props.activeLink == "products" ? "active" : "")} to="/products">Products</Link>
+                    <Link className={(props.activeLink == "shop" ? "active" : "")} to="/shop">Shop</Link>
                     {!props.token && <>
                         <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
                         <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
@@ -47,11 +48,13 @@ function Navigation(props) {
                     <Link className={(props.activeLink == "home" ? "active" : "")} to="/">Home</Link>
                     <Link className={(props.activeLink == "downloads" ? "active" : "")} to="/downloads">Downloads</Link>
                     <Link className={(props.activeLink == "products" ? "active" : "")} to="/products">Products</Link>
+                    <Link className={(props.activeLink == "shop" ? "active" : "")} to="/shop">Shop</Link>
                     {!props.token && <div className="authentication">
                         <Link className={(props.activeLink == "login" ? "active" : "")} to="/login">Login</Link>
                         <Link className={(props.activeLink == "register" ? "active" : "")} to="/register">Register</Link>
                     </div>}
                     {props.token && <a href="#" className="logout text-danger" onClick={() => props.logout()}>Logout</a>}
+                    <p className="m-0 p-1 rounded bg-white shopping-cart"><i className="fa fa-shopping-cart"></i> {props.cartItems.length}</p>
                 </div>
             </nav>
         </>
