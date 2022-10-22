@@ -53,6 +53,16 @@ function App() {
     }
   }, [error, success])
 
+  useEffect(() => {
+    fetch("/api/cart", {
+      headers: {
+        Authorization: "bearer " + token
+      }
+    })
+      .then(res => res.json())
+      .then(data => setCartItems(data.items))
+  }, [])
+
   const logout = () => {
     setToken("")
   }

@@ -29,7 +29,7 @@ const Shop = (props) => {
         })
             .then(res => res.status)
             .then(status => {
-                if(status == 200)
+                if (status === 200)
                     props.setCartItems(items => [...items, id])
             })
     }
@@ -43,9 +43,9 @@ const Shop = (props) => {
                 return (
                     <div key={p._id} className="col-md-3 mb-3">
                         <div className="m-2">
-                            <img className="w-100" src={p.img_path} />
+                            <img className="w-100" alt={p.name} src={p.img_path} />
                             <h3>{p.name}</h3>
-                            <a href="#" onClick={() => addToCart(p._id)}>Add to Cart</a>
+                            <button onClick={() => addToCart(p._id)}>Add to Cart</button>
                         </div>
                     </div>
                 )

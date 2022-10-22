@@ -14,10 +14,10 @@ const insertItem = (req, res) => {
 }
 
 const getItems = (req, res) => {
-    Cart.findOne({ user_id: res.locals.user_id }, function (err, cart) {
+    Cart.findOne({ user_id: res.locals.token.user_id }, function (err, cart) {
         if (err) return res.send("Failed")
-
-        return res.send("Success")
+        
+        return res.json(cart)
     });
 }
 
