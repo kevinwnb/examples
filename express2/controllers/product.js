@@ -22,18 +22,23 @@ const getProduct = (req, res) => {
 const insertProduct = (req, res) => {
     var form = new formidable.IncomingForm()
     form.parse(req, function (err, fields, files) {
-        if (err) throw new Error(err.message)
+        if (err)
+            return res.send(err.message)
+
         var oldpath = files.product_image.filepath
         var newpath = "./uploads/" + uuidv4() + path.extname(files.product_image.originalFilename);
         fs.copyFile(oldpath, newpath, function (err) {
-            if (err) throw new Error(err.message)
+            if (err)
+                return res.send(err.message)
+
             let model = new Product()
             model.name = fields.name
             model.img_path = newpath.substring(1)
             model.save((err, result) => {
                 if (err)
-                    throw err.message
-                return res.status(200).send("Insert successful")
+                    return res.send(err.message)
+
+                return res.status(200).json({ msg: "Insert successful" })
             })
         });
     });
